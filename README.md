@@ -1,3 +1,54 @@
+<!-- =========================================================================
+     PyCaret 4.0 is in active development. This banner updates visitors
+     landing on the default (master, 3.4.0) branch. The 4.0 revamp lives on
+     the `v4` branch. See also: https://github.com/pycaret/pycaret/tree/v4
+     ========================================================================= -->
+
+> ## 🛠 PyCaret 4.0 development has started — here's what's happening
+>
+> If you're here today, you're most likely on the **`master` branch (PyCaret 3.4.0)** — still installable via `pip install pycaret`, still works for existing 3.x code. But development has shifted: the **[4.0 revamp is live on the `v4` branch](https://github.com/pycaret/pycaret/tree/v4)** and we want to be transparent about what's going on.
+>
+> **Why.** PyCaret was released in 2020, widely adopted, and then went roughly three years without active maintenance. The consequences are real: it doesn't install cleanly on Python 3.12+, doesn't work with modern scikit-learn (≥1.5) or NumPy 2, and has 300+ open issues — many from people hitting exactly these compatibility cliffs. We owe you a maintained library.
+>
+> **What.** PyCaret 4.0 is a ground-up rebuild designed around how people actually use ML libraries in 2026:
+>
+> - **Sklearn-composable OOP engine.** `ClassificationExperiment`, `RegressionExperiment`, etc. are proper `sklearn.base.BaseEstimator` subclasses. `get_params`, `clone`, `__sklearn_tags__` all work.
+> - **Lean.** Core dependencies cut from 30 → 19. Unmaintained integrations removed: mlflow, comet, wandb, dagshub, fugue, dask, ray, yellowbrick, gradio, fastapi, boto3, m2cgen, evidently, fairlearn. Full list at [`docs/revamp/KILL_LIST.md`](https://github.com/pycaret/pycaret/blob/v4/docs/revamp/KILL_LIST.md).
+> - **Modern stack.** Works on Python 3.11 / 3.12 / 3.13, scikit-learn 1.7, NumPy 2, pandas 2.x. `uv` for environment management.
+> - **Agent- and UI-native.** Typed dataclass returns from every verb (`CompareResult`, `TuneResult`, ...), a structured event stream (`pycaret.logging`), and JSON-serializable introspection (`pycaret.api`). The forthcoming open-source PyCaret React UI runs on this engine.
+>
+> **Current status (updated regularly):** ~22K lines of tech debt removed. 32/32 tests green on the new OOP surface across Python 3.11 / 3.12 / 3.13 × Ubuntu + Windows. Five canonical notebooks executing end-to-end. The 3.x god-class is being drained verb-by-verb; the public API is stable from here on.
+>
+> **Timeline.** No firm date — 4.0 ships when it's ready. First installable release will be `4.0.0alpha0` once the first three verbs are fully migrated off the legacy internals. Tracking in [`docs/revamp/ROADMAP.md`](https://github.com/pycaret/pycaret/blob/v4/docs/revamp/ROADMAP.md) and [`docs/revamp/STATUS.md`](https://github.com/pycaret/pycaret/blob/v4/docs/revamp/STATUS.md).
+>
+> **3.x will keep working** — no forced migration, no 3.x EOL date. If you don't want to move, don't. We're not going to break your existing code.
+>
+> **Try 4.0 today:**
+>
+> ```bash
+> git clone -b v4 https://github.com/pycaret/pycaret.git
+> cd pycaret
+> uv sync --all-extras
+> uv run pytest tests/                     # -> 32 passed
+> uv run jupyter notebook notebooks/01_classification.ipynb
+> ```
+>
+> **How this is being built.** PyCaret 4.0 is being built collaboratively with [Claude](https://www.anthropic.com/claude) (Anthropic's coding agent). Every non-trivial change, every architectural decision, and every trade-off is documented in [`docs/revamp/release_notes_pycaret4.md`](https://github.com/pycaret/pycaret/blob/v4/docs/revamp/release_notes_pycaret4.md) — commit-by-commit, session-by-session. The goal is both a better library and a reproducible case study of AI-assisted open-source revival.
+>
+> **Useful links on `v4`:**
+> - [`README.md`](https://github.com/pycaret/pycaret/blob/v4/README.md) — 4.0 quickstart
+> - [`AGENTS.md`](https://github.com/pycaret/pycaret/blob/v4/AGENTS.md) — instructions for AI contributors
+> - [`docs/revamp/ARCHITECTURE.md`](https://github.com/pycaret/pycaret/blob/v4/docs/revamp/ARCHITECTURE.md) — the design
+> - [`docs/revamp/KILL_LIST.md`](https://github.com/pycaret/pycaret/blob/v4/docs/revamp/KILL_LIST.md) — what was removed and why
+> - [`docs/revamp/STATUS.md`](https://github.com/pycaret/pycaret/blob/v4/docs/revamp/STATUS.md) — current session status, refreshed every session
+> - [`CONTRIBUTING.md`](https://github.com/pycaret/pycaret/blob/v4/CONTRIBUTING.md) — contributor guide for 4.0
+>
+> **Issues.** If you're hitting a compat cliff on 3.x (Python 3.12+, sklearn 1.5+, NumPy 2, pandas 2.2+), please **don't file new issues** — those are already fixed in 4.0. Try the `v4` branch instead.
+>
+> For everything else: 3.x README continues below.
+
+---
+
 <div align="center">
 
 <img src="docs/images/logo.png" alt="drawing" width="200"/>
